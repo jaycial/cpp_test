@@ -8,10 +8,12 @@
 
 #include <iostream>
 #include <cmath>
+#include <string>
 int rand_take_five_num_from_ten();
 int insert_sort_arr();
 int get_volume();
 int analysis_num();
+int order_string();
 int main(int argc, const char * argv[]) {
     int option = 0;
     std::cout << "请选择功能:\n";
@@ -19,6 +21,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "2:插入排序:\n";
     std::cout << "3:数学公式类计算题\n";
     std::cout << "4:分解与解析\n";
+    std::cout << "5:字符串处理\n";
     std::cout << "0:退出程序:\n";
     std::cin >> option;
     while (option > 0) {
@@ -35,6 +38,9 @@ int main(int argc, const char * argv[]) {
             case 4:
                 analysis_num();
                 break;
+            case 5:
+                order_string();
+                break;
             default:
                 break;
         }
@@ -43,6 +49,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "2:插入排序:\n";
         std::cout << "3:数学公式类计算题\n";
         std::cout << "4:分解与解析\n";
+        std::cout << "5:字符串处理\n";
         std::cout << "0:退出程序:\n";
         std::cin >> option;
     }
@@ -184,5 +191,37 @@ int analysis_num(){
         std::cout << "第" << i+1 << "位:" << buf[i] << "\t" ;
     }
     std::cout << "\n打印结束\n";
+    return 0;
+}
+
+//输入4个字符串，将其保存，排序后输出。例如，输入dad, baby, kitty, buy , 输出 baby  buy   dad  kitty
+int order_string(){
+    std::string s[4];
+    std::string tmp;
+    int res;
+    std::cout << "输入四个字符串\n";
+    for (int i=0; i<4; i++) {
+        std::cout << "第" << i+1 << "个:";
+        std::cin >> s[i];
+        std::cout << "\n";
+    }
+    //比较大小(类似冒泡)
+    for (int i=0; i<4; i++) {
+        for (int j=i+1; j<4; j++) {
+            res = s[i].compare(s[j]);
+            if(res > 0){
+                tmp = s[i];
+                s[i] = s[j];
+                s[j] = tmp;
+            }
+        }
+    }
+    //打印结果
+    std::cout << "打印结果为:\n";
+    for (int i=0; i<4; i++) {
+        
+        std::cout << s[i] << "\n";
+    }
+    std::cout << "打印结束\n";
     return 0;
 }
