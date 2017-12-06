@@ -11,12 +11,14 @@
 int rand_take_five_num_from_ten();
 int insert_sort_arr();
 int get_volume();
+int analysis_num();
 int main(int argc, const char * argv[]) {
     int option = 0;
     std::cout << "请选择功能:\n";
     std::cout << "1:抽签题:\n";
     std::cout << "2:插入排序:\n";
     std::cout << "3:数学公式类计算题\n";
+    std::cout << "4:分解与解析\n";
     std::cout << "0:退出程序:\n";
     std::cin >> option;
     while (option > 0) {
@@ -30,6 +32,9 @@ int main(int argc, const char * argv[]) {
             case 3:
                 get_volume();
                 break;
+            case 4:
+                analysis_num();
+                break;
             default:
                 break;
         }
@@ -37,6 +42,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "1:抽签题:\n";
         std::cout << "2:插入排序:\n";
         std::cout << "3:数学公式类计算题\n";
+        std::cout << "4:分解与解析\n";
         std::cout << "0:退出程序:\n";
         std::cin >> option;
     }
@@ -149,5 +155,34 @@ int get_volume(){
     //计算
     v = pi*pow(r, 2)*h;
     std::cout << "经过计算，体积v=" << v <<std::endl;
+    return 0;
+}
+
+//给定一个长度为4的10进制整数，将各个数字分解到数组里。例如，给定1345，保存到数组int buf[4]里，则buf的内容依次是1,3,4,5
+int analysis_num(){
+    int num = 0;
+    int buf[4];
+    int base = 1000;
+    bool check_flag = false;
+    //接受输入，确保用户输入的是一个四位数
+    while (!check_flag) {
+        std::cout << "请输入一个四位数num=";
+        std::cin >> num;
+        check_flag = (num/1000 > 0 && num/10000<=0);
+        if(!check_flag){
+            std::cout << "输入有误！\n";
+        }
+    }
+    for (int i=0; i<4; i++) {
+        base = (base/(pow(10, i)));
+        buf[i] = (num - num%base)/base;
+        num = num%base;
+        base = 1000;
+    }
+    //打印
+    for (int i=0; i<4; i++) {
+        std::cout << "第" << i+1 << "位:" << buf[i] << "\t" ;
+    }
+    std::cout << "\n打印结束\n";
     return 0;
 }
