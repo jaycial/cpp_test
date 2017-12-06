@@ -7,13 +7,16 @@
 //
 
 #include <iostream>
+#include <cmath>
 int rand_take_five_num_from_ten();
 int insert_sort_arr();
+int get_volume();
 int main(int argc, const char * argv[]) {
     int option = 0;
     std::cout << "请选择功能:\n";
     std::cout << "1:抽签题:\n";
     std::cout << "2:插入排序:\n";
+    std::cout << "3:数学公式类计算题\n";
     std::cout << "0:退出程序:\n";
     std::cin >> option;
     while (option > 0) {
@@ -24,12 +27,16 @@ int main(int argc, const char * argv[]) {
             case 2:
                 insert_sort_arr();
                 break;
+            case 3:
+                get_volume();
+                break;
             default:
                 break;
         }
         std::cout << "请选择功能:";
         std::cout << "1:抽签题:\n";
         std::cout << "2:插入排序:\n";
+        std::cout << "3:数学公式类计算题\n";
         std::cout << "0:退出程序:\n";
         std::cin >> option;
     }
@@ -129,5 +136,18 @@ int insert_sort_arr()
         std::cout << res_arr[i] << "\t";
     }
     std::cout << "\n打印结束\n";
+    return 0;
+}
+//已经圆柱体的底半径r，高h，求体积v。公式给出:  v = pi * r^2 * h
+int get_volume(){
+    double pi = 3.14;
+    double r,h,v;
+    std::cout << "计算圆柱体积，请输入\n半径r=";
+    std::cin >> r;
+    std::cout << "\n高h=";
+    std::cin >> h;
+    //计算
+    v = pi*pow(r, 2)*h;
+    std::cout << "经过计算，体积v=" << v <<std::endl;
     return 0;
 }
