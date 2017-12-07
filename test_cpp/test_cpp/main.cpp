@@ -9,11 +9,13 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <stdlib.h>
 int rand_take_five_num_from_ten();
 int insert_sort_arr();
 int get_volume();
 int analysis_num();
 int order_string();
+int hax_to_dec();
 int main(int argc, const char * argv[]) {
     int option = 0;
     std::cout << "请选择功能:\n";
@@ -22,6 +24,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "3:数学公式类计算题\n";
     std::cout << "4:分解与解析\n";
     std::cout << "5:字符串处理\n";
+    std::cout << "6:十六进制转十进制\n";
     std::cout << "0:退出程序:\n";
     std::cin >> option;
     while (option > 0) {
@@ -41,6 +44,9 @@ int main(int argc, const char * argv[]) {
             case 5:
                 order_string();
                 break;
+            case 6:
+                hax_to_dec();
+                break;
             default:
                 break;
         }
@@ -50,6 +56,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "3:数学公式类计算题\n";
         std::cout << "4:分解与解析\n";
         std::cout << "5:字符串处理\n";
+        std::cout << "6:十六进制转十进制\n";
         std::cout << "0:退出程序:\n";
         std::cin >> option;
     }
@@ -223,5 +230,35 @@ int order_string(){
         std::cout << s[i] << "\n";
     }
     std::cout << "打印结束\n";
+    return 0;
+}
+
+//输入16进制的字符串，转换为整数输出。例如，输入字符串 "A12B"，函数返回整数41259。
+int hax_to_dec(){
+    std::string s;
+    int result = 0;
+    unsigned long length = 0;
+    char current_char;
+    int current_num;
+    int tmp;
+    //输入
+    std::cout << "请输入一个十六进制数：";
+    std::cin >> s;
+    //取长度
+    length = s.length();
+    //for循环计算
+    for (int i=0; i<s.length(); i++) {
+        current_num = s.at(i);
+        if(current_num > 47 && current_num < 58){
+            current_num -= 48;
+        }else if(current_num > 64 && current_num < 71){
+            current_num -= 55;
+        }else{
+            current_num -= 87;
+        }
+        tmp = pow(16, (length - i -1));
+        result += current_num*tmp;
+    }
+    std::cout << "打印结果为：" << result << std::endl;
     return 0;
 }
