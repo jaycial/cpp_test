@@ -17,6 +17,7 @@ int analysis_num();
 int order_string();
 int hax_to_dec();
 int bin_to_dec();
+int vote_system();
 int main(int argc, const char * argv[]) {
     int option = 0;
     std::cout << "请选择功能:\n";
@@ -27,6 +28,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "5:字符串处理\n";
     std::cout << "6:十六进制转十进制\n";
     std::cout << "7:二进制转十进制\n";
+    std::cout << "8:投票系统\n";
     std::cout << "0:退出程序:\n";
     std::cin >> option;
     while (option > 0) {
@@ -52,6 +54,9 @@ int main(int argc, const char * argv[]) {
             case 7:
                 bin_to_dec();
                 break;
+            case 8:
+                vote_system();
+                break;
             default:
                 break;
         }
@@ -63,6 +68,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "5:字符串处理\n";
         std::cout << "6:十六进制转十进制\n";
         std::cout << "7:二进制转十进制\n";
+        std::cout << "8:投票系统\n";
         std::cout << "0:退出程序:\n";
         std::cin >> option;
     }
@@ -286,5 +292,24 @@ int bin_to_dec(){
         }
     }
     std::cout << "打印结果" << result << std::endl;
+    return 0;
+}
+int vote_system(){
+    bool vote_status = false;
+    int res_num = 0;
+    for (int i=0; i<3; i++) {
+        std::cout << "请输入第" << i+1 << "位裁判的投票(0反对，1赞成):";
+        std::cin >> vote_status;
+        if(vote_status){
+            res_num ++;
+        }
+        
+    }
+    //打印结果
+    if(res_num >=2){
+        std::cout << "通过\n";
+    }else{
+        std::cout << "未通过\n";
+    }
     return 0;
 }
