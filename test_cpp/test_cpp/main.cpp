@@ -18,6 +18,7 @@ int order_string();
 int hax_to_dec();
 int bin_to_dec();
 int vote_system();
+int replace_str();
 int main(int argc, const char * argv[]) {
     int option = 0;
     std::cout << "请选择功能:\n";
@@ -29,6 +30,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "6:十六进制转十进制\n";
     std::cout << "7:二进制转十进制\n";
     std::cout << "8:投票系统\n";
+    std::cout << "9:替换字符串\n";
     std::cout << "0:退出程序:\n";
     std::cin >> option;
     while (option > 0) {
@@ -57,10 +59,13 @@ int main(int argc, const char * argv[]) {
             case 8:
                 vote_system();
                 break;
+            case 9:
+                replace_str();
+                break;
             default:
                 break;
         }
-        std::cout << "请选择功能:";
+        std::cout << "请选择功能:\n";
         std::cout << "1:抽签题:\n";
         std::cout << "2:插入排序:\n";
         std::cout << "3:数学公式类计算题\n";
@@ -69,6 +74,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "6:十六进制转十进制\n";
         std::cout << "7:二进制转十进制\n";
         std::cout << "8:投票系统\n";
+        std::cout << "9:替换字符串\n";
         std::cout << "0:退出程序:\n";
         std::cin >> option;
     }
@@ -311,5 +317,20 @@ int vote_system(){
     }else{
         std::cout << "未通过\n";
     }
+    return 0;
+}
+//将日期字符串中的"-"转换成"/"，如将"2015-03-18"转换为"2015/3/18"
+int replace_str(){
+    std::string s;
+    std::cout << "请输入日期：";
+    std::cin >> s;
+    //for循环替换'-'为'/'
+    for (int i=0; i<s.length(); i++) {
+        if(s.at(i) == 45){
+            s.replace(i, 1, "/");
+        }
+    }
+    //打印结果
+    std::cout << "打印结果为：" << s << std::endl;
     return 0;
 }
