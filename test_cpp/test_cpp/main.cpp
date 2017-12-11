@@ -10,6 +10,8 @@
 #include <cmath>
 #include <string>
 #include <stdlib.h>
+#include <fstream>
+#include <iostream>
 int rand_take_five_num_from_ten();
 int insert_sort_arr();
 int get_volume();
@@ -19,6 +21,7 @@ int hax_to_dec();
 int bin_to_dec();
 int vote_system();
 int replace_str();
+int save_name();
 int main(int argc, const char * argv[]) {
     int option = 0;
     std::cout << "请选择功能:\n";
@@ -31,6 +34,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "7:二进制转十进制\n";
     std::cout << "8:投票系统\n";
     std::cout << "9:替换字符串\n";
+    std::cout << "10:保存人名到本地文件\n";
     std::cout << "0:退出程序:\n";
     std::cin >> option;
     while (option > 0) {
@@ -62,6 +66,9 @@ int main(int argc, const char * argv[]) {
             case 9:
                 replace_str();
                 break;
+            case 10:
+                save_name();
+                break;
             default:
                 break;
         }
@@ -75,6 +82,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "7:二进制转十进制\n";
         std::cout << "8:投票系统\n";
         std::cout << "9:替换字符串\n";
+        std::cout << "10:保存人名到本地文件\n";
         std::cout << "0:退出程序:\n";
         std::cin >> option;
     }
@@ -332,5 +340,20 @@ int replace_str(){
     }
     //打印结果
     std::cout << "打印结果为：" << s << std::endl;
+    return 0;
+}
+
+int save_name(){
+    std::fstream file;
+    std::string ch;
+    file.open("name.txt",std::ios::out);
+    std::cout << "请输入姓名：";
+    std::cin >> ch;
+    while (ch != "0") {
+        file << ch << "\n";
+        std::cout << "请继续输入姓名(输入0结束)：";
+        std::cin >> ch;
+    }
+    file.close();
     return 0;
 }
