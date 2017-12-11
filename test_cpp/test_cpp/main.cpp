@@ -16,6 +16,7 @@ int get_volume();
 int analysis_num();
 int order_string();
 int hax_to_dec();
+int bin_to_dec();
 int main(int argc, const char * argv[]) {
     int option = 0;
     std::cout << "请选择功能:\n";
@@ -25,6 +26,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "4:分解与解析\n";
     std::cout << "5:字符串处理\n";
     std::cout << "6:十六进制转十进制\n";
+    std::cout << "7:二进制转十进制\n";
     std::cout << "0:退出程序:\n";
     std::cin >> option;
     while (option > 0) {
@@ -47,6 +49,9 @@ int main(int argc, const char * argv[]) {
             case 6:
                 hax_to_dec();
                 break;
+            case 7:
+                bin_to_dec();
+                break;
             default:
                 break;
         }
@@ -57,6 +62,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "4:分解与解析\n";
         std::cout << "5:字符串处理\n";
         std::cout << "6:十六进制转十进制\n";
+        std::cout << "7:二进制转十进制\n";
         std::cout << "0:退出程序:\n";
         std::cin >> option;
     }
@@ -238,7 +244,6 @@ int hax_to_dec(){
     std::string s;
     int result = 0;
     unsigned long length = 0;
-    char current_char;
     int current_num;
     int tmp;
     //输入
@@ -260,5 +265,26 @@ int hax_to_dec(){
         result += current_num*tmp;
     }
     std::cout << "打印结果为：" << result << std::endl;
+    return 0;
+}
+
+//将2进制字符串转换为整数输出。函数原型 例如，输入字符串"11000000111001"，函数返回整数12345.
+int bin_to_dec(){
+    std::string s;
+    int result = 0;
+    unsigned long length = 0;
+    int current_num;
+    std::cout << "请出入一个二进制的数字：";
+    std::cin >> s;
+    //取长度
+    length = s.length();
+    //for循环
+    for (int i=0; i<length; i++) {
+        current_num = s.at(i);
+        if(49 == current_num){
+            result += pow(2, length-i-1);
+        }
+    }
+    std::cout << "打印结果" << result << std::endl;
     return 0;
 }
